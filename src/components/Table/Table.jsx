@@ -4,7 +4,7 @@ import "./Table.scss";
 const Table = () => {
   return (
     <table className="table">
-      <caption>Информация о пользователях</caption>
+      <caption className="table__caption">Информация о пользователях</caption>
       <thead className="table__head">
         <tr className="table__titlesWrap">
           <th className="table__title">ФИО</th>

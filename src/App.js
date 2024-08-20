@@ -1,4 +1,4 @@
-import './App.css';
+import './stylesCommon/_common.scss';
 import Table from './components/Table/Table';
 
 function App() {

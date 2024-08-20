@@ -1,4 +1,31 @@
 .table {
+    margin: 0 auto;
     width: 100vw;
     max-width: 1200px;
+    &__caption {
+        margin: 2rem 0.7rem;
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: left;
+    }
+    &__head, &__body {
+        text-align: left;
+    }
+    &__title {
+        font-size: 1.5rem;
+        padding: 1rem 0.7rem;
+    }
+    &__info {
+        padding: 0.7rem;
+        font-weight: normal;
+    }
+    &__user{
+        
+        transition: 0.2s ease-in-out;
+        
+        &:hover {
+            background: #cdec85;
+            cursor: pointer;
+        }
+    }
 }
