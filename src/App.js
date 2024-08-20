@@ -1,10 +1,10 @@
 import './stylesCommon/_common.scss';
-import Table from './components/Table/Table';
+import All from './components/All/All';
 
 function App() {
   return (
     <div className="App">
-      <Table/>
+      <All/>
     </div>
   );
 }
