@@ -1,35 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Table.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsersAsync } from "../../features/usersSlice";
 
 const Table = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsersAsync());
+  }, [dispatch]);
+
+  const users = useSelector((state) => state.users.allUsers);
+
   return (
     <table className="table">
-      <caption className="table__caption">Информация о пользователях</caption>
+      <caption className="table__caption">Information about users</caption>
       <thead className="table__head">
         <tr className="table__titlesWrap">
-          <th className="table__title">ФИО</th>
-          <th className="table__title">Возраст</th>
-          <th className="table__title">Пол</th>
-          <th className="table__title">Телефон</th>
-          <th className="table__title">Адрес</th>
+          <th className="table__title">Name</th>
+          <th className="table__title">Age</th>
+          <th className="table__title">Gender</th>
+          <th className="table__title">Phone</th>
+          <th className="table__title">Address</th>
         </tr>
       </thead>
       <tbody className="table__body">
-        <tr className="table__user">
-          <th className="table__info">Иванов Иван Иванович</th>
-          <th className="table__info">23</th>
-          <th className="table__info">мужской</th>
-          <th className="table__info">8-912-345-6789</th>
-          <th className="table__info">г. Томск, ул. Ленина</th>
-        </tr>
-        <tr className="table__user">
-          <th className="table__info">Александрова Александра Александровна</th>
-          <th className="table__info">29</th>
-          <th className="table__info">женский</th>
-          <th className="table__info">8-912-345-6789</th>
-          <th className="table__info">г. Томск, ул. Пушкина</th>
-        </tr>
+        {users.map((user) => {
+          return (
+            <tr className="table__user" key={user.id}>
+              <th className="table__info">{`${user.lastName} ${user.firstName}`}</th>
+              <th className="table__info">{user.age}</th>
+              <th className="table__info">{user.gender}</th>
+              <th className="table__info">{user.phone}</th>
+              <th className="table__info">{`${user.address.city} ${user.address.address}`}</th>
+            </tr>
+          );
+        })}
       </tbody>
+      <tfoot className="table__foot">
+        <tr className="table__footRow">
+          <th className="table__totalAmount">{`Amount of users: ${users.length}`}</th>
+        </tr>
+      </tfoot>
     </table>
   );
 };
