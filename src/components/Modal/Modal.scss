@@ -1,0 +1,50 @@
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($color: #000000, $alpha: 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+
+    &__content {
+        width: 400px;
+        background: #fafafa;
+        position: absolute;
+        transform: translateY(-400%);
+        transition: all 0.5s ease-in-out;
+        transition-delay: 0.2s;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &__header,
+    &__footer {
+        padding: 1rem;
+    }
+
+    &__body {
+        padding: 1.5rem;
+        border-bottom: 1px solid #eee;
+        border-top: 1px solid #eee;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__show {
+        opacity: 1;
+    visibility: visible;
+        .modal__content {
+            transform: translateY(0%);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
