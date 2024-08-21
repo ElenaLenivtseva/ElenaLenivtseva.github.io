@@ -7,6 +7,38 @@ const Modal = () => {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector((state) => state.modal.isOpen);
   const user = useSelector((state) => state.modal.info);
+  let info = [
+    {
+      key: "Name",
+      value: `${user.firstName} ${user.lastName}`,
+    },
+    {
+      key: "Age",
+      value: user.age,
+    },
+    {
+      key: "Height",
+      value: user.height,
+    },
+    {
+      key: "Weight",
+      value: user.weight,
+    },
+    {
+      key: "Phone",
+      value: user.phone,
+    },
+    {
+      key: "Email",
+      value: user.email,
+    },
+  ];
+  if (user.address){
+    info.push({
+      key: "Address",
+      value: `${user.address.city} ${user.address.address}`,
+    })
+  }
 
   return (
     <div
@@ -15,65 +47,21 @@ const Modal = () => {
     >
       <div className="modal__content" onClick={(e) => e.stopPropagation()}>
         <div className="modal__header">
-          <div className="modal__title">{`Information about user ${user.id}`}</div>
+          <div className="modal__title">{`Information about User ${user.id}`}</div>
         </div>
         <div className="modal__body">
-          <div className="modal__infoWrap">
-            <div className="modal__info">
-                <p className="modal__key">Name</p>
-            </div>
-            <div className="modal__info">
-                <p className="modal__val">{user.lastName}</p>
-            </div>
-          </div>
-          <div className="modal__infoWrap">
-            <div className="modal__info">
-                <p className="modal__key">Age</p>
-            </div>
-            <div className="modal__info">
-                <p className="modal__val">{user.age}</p>
-            </div>
-          </div>
-          <div className="modal__infoWrap">
-            <div className="modal__info">
-                <p className="modal__key">Height</p>
-            </div>
-            <div className="modal__info">
-                <p className="modal__val">{user.height}</p>
-            </div>
-          </div>
-          <div className="modal__infoWrap">
-            <div className="modal__info">
-                <p className="modal__key">Weight</p>
-            </div>
-            <div className="modal__info">
-                <p className="modal__val">{user.weight}</p>
-            </div>
-          </div>
-          <div className="modal__infoWrap">
-            <div className="modal__info">
-                <p className="modal__key">Weight</p>
-            </div>
-            <div className="modal__info">
-                <p className="modal__val">{user.weight}</p>
-            </div>
-          </div>
-          <div className="modal__infoWrap">
-            <div className="modal__info">
-                <p className="modal__key">Phone</p>
-            </div>
-            <div className="modal__info">
-                <p className="modal__val">{user.phone}</p>
-            </div>
-          </div>
-          <div className="modal__infoWrap">
-            <div className="modal__info">
-                <p className="modal__key">Email</p>
-            </div>
-            <div className="modal__info">
-                <p className="modal__val">{user.email}</p>
-            </div>
-          </div>
+          {info.map((item) => {
+            return (
+              <div className="modal__infoWrap">
+                <div className="modal__infoTitle">
+                  <p className="modal__key">{item.key}</p>
+                </div>
+                <div className="modal__info">
+                  <p className="modal__val">{item.value}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

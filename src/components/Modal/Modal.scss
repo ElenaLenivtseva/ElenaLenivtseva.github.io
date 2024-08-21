@@ -40,11 +40,29 @@
 
     &__show {
         opacity: 1;
-    visibility: visible;
+        visibility: visible;
+
         .modal__content {
             transform: translateY(0%);
             opacity: 1;
             visibility: visible;
         }
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__infoWrap {
+        display: flex;
+    }
+
+    &__infoTitle {
+        width: 30%;
+        margin-bottom: 1rem;
+        font-weight: bold;
+
     }
 }
