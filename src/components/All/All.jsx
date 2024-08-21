@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersAsync } from "../../features/usersSlice";
 import Table from "../Table/Table";
+import Search from "../Search/Search";
 
 const All = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const All = () => {
  
   return (
     <div>
+      <Search/>
       <Table users={users} />
     </div>
   );

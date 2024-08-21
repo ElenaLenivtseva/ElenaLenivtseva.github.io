@@ -1,0 +1,24 @@
+.search {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 100vw;
+    max-width: 1200px;
+    margin-top: 2rem;
+    &__svg {
+        width: 3rem;
+        color: #cdec85;
+        transform: scaleX(-1);
+        margin-right: 0.5rem;
+    }
+    &__title {
+        font-size: 2rem;
+        color: black;
+        font-style: italic;
+        transition: 0.7s ease-in-out;
+        border-bottom: 1px solid rgba($color: #000000, $alpha: 0);
+        &:hover {
+            border-bottom: 1px solid #cdec85;
+        }
+    }
+}
