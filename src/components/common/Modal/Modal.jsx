@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal } from "../../features/modalSlice";
+import { closeModal } from "../../../features/slices/modalSlice";
 import "./Modal.scss";
 
 const Modal = () => {

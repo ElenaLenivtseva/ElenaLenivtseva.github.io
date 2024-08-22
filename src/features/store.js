@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import usersReducer from './usersSlice'
-import modalReducer from './modalSlice'
+import usersReducer from './slices/usersSlice'
+import modalReducer from './slices/modalSlice'
 
 
 export default configureStore({
