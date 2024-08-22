@@ -1,12 +1,12 @@
 import React from "react";
+import Modal from "../Modal/Modal";
 import User from "../User/User";
 import "./Table.scss";
-import Modal from "../Modal/Modal";
 
 const Table = ({ users }) => {
   return (
     <>
-      {users.length>0 ? (
+      {users.length > 0 ? (
         <>
           <table className="table">
             <caption className="table__caption">
@@ -35,7 +35,9 @@ const Table = ({ users }) => {
           <Modal />
         </>
       ) : (
-        <p>Nothing yet</p>
+        <div className="table__messageWrap">
+          <p className="table__message">Nothing yet...</p>
+        </div>
       )}
     </>
   );

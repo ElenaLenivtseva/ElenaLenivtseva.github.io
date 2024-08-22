@@ -2,6 +2,16 @@
     margin: 0 auto;
     width: 100vw;
     max-width: 1200px;
+    &__messageWrap {
+        margin: 0 auto;
+        width: 100vw;
+        max-width: 1200px;
+        padding-left: 0.8rem;
+    }
+    &__message {
+        font-size: 2rem;
+        margin-top: 2rem;
+    }
     &__caption {
         margin: 2rem 0.7rem;
         font-size: 3rem;

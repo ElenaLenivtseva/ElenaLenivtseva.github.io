@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import './User.scss'
+import React from "react";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../features/slices/modalSlice";
+import './User.scss'
 
 const User = ({ user }) => {
   const dispatch = useDispatch()

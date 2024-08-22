@@ -1,0 +1,12 @@
+.searchBar {
+    margin: 4rem 0;
+   display: flex;
+   justify-content: center;
+    &__input {
+        padding: 0.3rem 0.8rem;
+        font-size: 1.2rem; 
+        // background-color: azure;
+        border: 1px solid rgb(66, 65, 65);
+    }
+    
+}

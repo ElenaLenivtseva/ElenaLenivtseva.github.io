@@ -87,3 +87,17 @@ label {
 legend {
 	display: block;
 }
+
+.button {
+	background: rgb(66, 65, 65);
+        font-size: 1.2rem; 
+        padding: 0.3rem 0.8rem;
+        color: white;
+        transition: 0.5s ease-out;
+        &:hover {
+            opacity: 0.7;
+        }
+}
+body {
+	background: #f3f4f5;
+}
