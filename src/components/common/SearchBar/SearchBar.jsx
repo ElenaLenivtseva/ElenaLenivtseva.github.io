@@ -1,42 +1,15 @@
 import React, { useState } from "react";
+import { getFiltredUsers } from "../../../api/api";
 import "./SearchBar.scss";
 
-const keys = [
-  "firstName",
-  "lastName",
-  "gender",
-  "age",
-  "phone",
-  "address.city",
-  "address.address",
-];
 
 const SearchBar = ({ setUsers, setStatus, setErrorText }) => {
   const [search, setSearch] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    setStatus("loading");
-    setUsers([]);
-    let arr = [];
-    for (let i = 0; i < keys.length; i++) {
-      fetch(`https://dummyjson.com/users/filter?key=${keys[i]}&value=${search}`)
-        .then((response) => response.json())
-        .then((data) => {
-          arr.push(...data.users);
-          // это чревато перерендерами (столько, сколько keys), но если вынести это за пределы цикла, не срабатывает. Полагаю, потому что нет "ожидания" в синхронном коде
-          setUsers([...arr]);
-        })
-        .catch((error) => {
-          setStatus("error");
-          setErrorText(error.message);
-        })
-        .finally(() => {
-          setSearch("");
-        });
-      setErrorText("");
-      setStatus("success");
-    }
+    getFiltredUsers(search, setStatus, setUsers, setErrorText);
+    setSearch("");
   }
 
   return (

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./common/SearchBar/SearchBar";
 import Table from "./common/Table/Table";
 import "./HomePage.scss";
+import {getAllUsers} from '../api/api'
+
 
 const HomePage = () => {
   const [status, setStatus] = useState("loading");
@@ -9,17 +11,7 @@ const HomePage = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/users")
-      .then((response) => response.json())
-      .then((data) => {
-        setStatus("success");
-        setErrorText("");
-        setUsers(data.users);
-      })
-      .catch((error) => {
-        setStatus("error");
-        setErrorText(error.message);
-      });
+    getAllUsers(setErrorText, setStatus, setUsers);
   }, []);
 
   return (
@@ -30,9 +22,12 @@ const HomePage = () => {
           setStatus={setStatus}
           setErrorText={setErrorText}
         />
-        {/* <button className="button" onClick={() => dispatch(getAllUsersAsync())}>
+        <button
+          className="button"
+          onClick={() => getAllUsers(setErrorText, setStatus, setUsers)}
+        >
           Get All Users
-        </button> */}
+        </button>
       </div>
       <div className="home__body">
         {status === "loading" && <p>Loading...</p>}
