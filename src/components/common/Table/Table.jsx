@@ -2,13 +2,22 @@ import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import User from "../User/User";
 import "./Table.scss";
+import TitleTable from "../TitleTable/TitleTable";
 
-const Table = ({ users }) => {
+const names = [
+  { name: "Name", sortParam: "lastName" },
+  { name: "Age", sortParam: "age" },
+  { name: "Gender", sortParam: "gender" },
+  { name: "Phone", sortParam: "" },
+  { name: "Address", sortParam: "address" },
+];
+
+const Table = ({ users, setUsers }) => {
   const [user, setUser] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function closeModal() {
-    setUser({})
+    setUser({});
     setModalIsOpen(false);
   }
 
@@ -22,11 +31,16 @@ const Table = ({ users }) => {
             </caption>
             <thead className="table__head">
               <tr className="table__titlesWrap">
-                <th className="table__title">Name</th>
-                <th className="table__title">Age</th>
-                <th className="table__title">Gender</th>
-                <th className="table__title">Phone</th>
-                <th className="table__title">Address</th>
+                {names.map((item, index) => {
+                  return (
+                    <TitleTable
+                      key={index}
+                      item={item}
+                      users={users}
+                      setUsers={setUsers}
+                    />
+                  );
+                })}
               </tr>
             </thead>
             <tbody className="table__body">

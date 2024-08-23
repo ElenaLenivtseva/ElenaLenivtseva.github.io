@@ -5,11 +5,12 @@ import "./HomePage.scss";
 import {getAllUsers} from '../api/api'
 
 
+
 const HomePage = () => {
   const [status, setStatus] = useState("loading");
   const [errorText, setErrorText] = useState("");
   const [users, setUsers] = useState([]);
-
+ 
   useEffect(() => {
     getAllUsers(setErrorText, setStatus, setUsers);
   }, []);
@@ -28,6 +29,7 @@ const HomePage = () => {
         >
           Get All Users
         </button>
+       
       </div>
       <div className="home__body">
         {status === "loading" && <p>Loading...</p>}
@@ -37,7 +39,7 @@ const HomePage = () => {
             <p>{errorText}</p>
           </div>
         )}
-        {status === "success" && <Table users={users} />}
+        {status === "success" && <Table users={users} setUsers={setUsers}/>}
       </div>
     </div>
   );
