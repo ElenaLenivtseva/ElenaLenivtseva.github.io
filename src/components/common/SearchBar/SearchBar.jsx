@@ -1,29 +1,44 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getFiltredUsersAsync } from "../../../features/slices/usersSlice";
-import './SearchBar.scss'
+import "./SearchBar.scss";
 
-const SearchBar = () => {
+const keys = [
+  "firstName",
+  "lastName",
+  "gender",
+  "age",
+  "phone",
+  "address.city",
+  "address.address",
+];
+
+const SearchBar = ({ setUsers, setStatus, setErrorText }) => {
   const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
+
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(
-      getFiltredUsersAsync({
-        keys: [
-          "firstName",
-          "lastName",
-          "gender",
-          "age",
-          "phone",
-          "address.city",
-          "address.address",
-        ],
-        value: search,
-      })
-    );
-    setSearch("");
+    setStatus("loading");
+    setUsers([]);
+    let arr = [];
+    for (let i = 0; i < keys.length; i++) {
+      fetch(`https://dummyjson.com/users/filter?key=${keys[i]}&value=${search}`)
+        .then((response) => response.json())
+        .then((data) => {
+          arr.push(...data.users);
+          // это чревато перерендерами (столько, сколько keys), но если вынести это за пределы цикла, не срабатывает. Полагаю, потому что нет "ожидания" в синхронном коде
+          setUsers([...arr]);
+        })
+        .catch((error) => {
+          setStatus("error");
+          setErrorText(error.message);
+        })
+        .finally(() => {
+          setSearch("");
+        });
+      setErrorText("");
+      setStatus("success");
+    }
   }
+
   return (
     <form className="searchBar" onSubmit={handleSubmit}>
       <input
