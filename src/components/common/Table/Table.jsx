@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import User from "../User/User";
 import "./Table.scss";
 
 const Table = ({ users }) => {
+  const [user, setUser] = useState({});
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  function closeModal() {
+    setUser({})
+    setModalIsOpen(false);
+  }
+
   return (
     <>
       {users.length > 0 ? (
@@ -23,7 +31,14 @@ const Table = ({ users }) => {
             </thead>
             <tbody className="table__body">
               {users.map((user) => {
-                return <User user={user} key={user.id} />;
+                return (
+                  <User
+                    user={user}
+                    key={user.id}
+                    setModalIsOpen={setModalIsOpen}
+                    setUser={setUser}
+                  />
+                );
               })}
             </tbody>
             <tfoot className="table__foot">
@@ -32,7 +47,11 @@ const Table = ({ users }) => {
               </tr>
             </tfoot>
           </table>
-          <Modal />
+          <Modal
+            modalIsOpen={modalIsOpen}
+            user={user}
+            closeModal={closeModal}
+          />
         </>
       ) : (
         <div className="table__messageWrap">

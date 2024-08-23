@@ -1,12 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { closeModal } from "../../../features/slices/modalSlice";
 import "./Modal.scss";
 
-const Modal = () => {
-  const dispatch = useDispatch();
-  const modalIsOpen = useSelector((state) => state.modal.isOpen);
-  const user = useSelector((state) => state.modal.info);
+const Modal = ({ modalIsOpen, user, closeModal }) => {
   let info = [
     {
       key: "Name",
@@ -33,17 +28,18 @@ const Modal = () => {
       value: user.email,
     },
   ];
-  if (user.address){
+  // именно с address возникали проблемы, поэтому создана отдельная проверка на него
+  if (user.address) {
     info.push({
       key: "Address",
       value: `${user.address.city} ${user.address.address}`,
-    })
+    });
   }
 
   return (
     <div
       className={`modal ${modalIsOpen ? "modal__show" : ""}`}
-      onClick={() => dispatch(closeModal())}
+      onClick={closeModal}
     >
       <div className="modal__content" onClick={(e) => e.stopPropagation()}>
         <div className="modal__header">
