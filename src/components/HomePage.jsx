@@ -1,27 +1,44 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllUsersAsync } from "../features/slices/usersSlice";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./common/SearchBar/SearchBar";
 import Table from "./common/Table/Table";
 import "./HomePage.scss";
 
-const HomePage = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllUsersAsync());
-  }, [dispatch]);
 
-  const users = useSelector((state) => state.users);
+const HomePage = () => {
+  const [status, setStatus] = useState("loading");
+  const [errorText, setErrorText] = useState("");
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setStatus("success");
+        setErrorText("");
+        setUsers(data.users);
+      })
+      .catch((error) => {
+        setStatus("error");
+        setErrorText(error.message);
+      });
+  }, []);
 
   return (
     <div className="home">
       <div className="home__top">
-        <SearchBar />
-        <button className='button' onClick={() => dispatch(getAllUsersAsync())}>
+        {/* <SearchBar /> */}
+        {/* <button className="button" onClick={() => dispatch(getAllUsersAsync())}>
           Get All Users
-        </button>
+        </button> */}
       </div>
-      <Table users={users} />
+      {status === "loading" && <p>Loading...</p>}
+      {status === "error" && (
+        <div>
+          <p>Sorry, there is a error.</p>
+          <p>{errorText}</p>
+        </div>
+      )}
+      {status === "success" && <Table users={users} />}
     </div>
   );
 };
