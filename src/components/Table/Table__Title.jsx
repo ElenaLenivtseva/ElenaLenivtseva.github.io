@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 
-const TitleTable = ({ item, users, setUsers, index, tableHeight, mouseDown, activeIndex }) => {
+// этот компонент не только отрисовывает название колонки. По двойному клику на название колонки происходит сортировка users. Также именно с ним связано изменение ширины колонки
+
+const TableTitle = ({
+  item,
+  users,
+  setUsers,
+  index,
+  tableHeight,
+  mouseDown,
+  activeIndex,
+}) => {
   const [order, setOrder] = useState("asc");
   const sorting = (param) => {
     if (param === "address") {
@@ -36,7 +46,7 @@ const TitleTable = ({ item, users, setUsers, index, tableHeight, mouseDown, acti
   return (
     <th
       ref={item.ref}
-      className={`table__title ${
+      className={`table__th table__title ${
         item.name === "Phone" ? "table__titleWithoutHover" : ""
       }`}
       onDoubleClick={() => {
@@ -52,17 +62,7 @@ const TitleTable = ({ item, users, setUsers, index, tableHeight, mouseDown, acti
         className={`resize-handle ${activeIndex === index ? "active" : "idle"}`}
       />
     </th>
-    // <th ref={ref} key={text}>
-    //   <span>{text}</span>
-    //   <div
-    //     style={{ height: tableHeight }}
-    //     onMouseDown={() => mouseDown(i)}
-    //     className={`resize-handle ${
-    //       activeIndex === i ? "active" : "idle"
-    //     }`}
-    //   />
-    // </th>
   );
 };
 
-export default TitleTable;
+export default TableTitle;

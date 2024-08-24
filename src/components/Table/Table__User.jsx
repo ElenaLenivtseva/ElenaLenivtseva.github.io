@@ -1,7 +1,6 @@
 import React from "react";
-import "./User.scss";
 
-const User = ({ user, setModalIsOpen, setUser }) => {
+const TableUser = ({ user, setModalIsOpen, setUser }) => {
   return (
     <>
       <tr
@@ -32,4 +31,4 @@ const User = ({ user, setModalIsOpen, setUser }) => {
   );
 };
 
-export default User;
+export default TableUser;

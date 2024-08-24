@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, useRef } from "react";
-import "./Table.scss";
-import TableContent from "./TableContent";
+import TableContent from "./Table__Content";
 import Modal from "../common/Modal/Modal";
-import TitleTable from "../common/TitleTable/TitleTable";
+import TableTitle from "./Table__Title";
+import "./Table.scss";
 
 const createHeaders = (headers) => {
   return headers.map((item) => ({
@@ -13,6 +13,7 @@ const createHeaders = (headers) => {
 };
 
 const Table = ({ headers, minCellWidth, users, setUsers }) => {
+  // для модального окна
   const [user, setUser] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -21,6 +22,7 @@ const Table = ({ headers, minCellWidth, users, setUsers }) => {
     setModalIsOpen(false);
   }
 
+  // для возможности менять ширину колонок
   const [tableHeight, setTableHeight] = useState("auto");
   const [activeIndex, setActiveIndex] = useState(null);
   const tableElement = useRef(null);
@@ -82,13 +84,13 @@ const Table = ({ headers, minCellWidth, users, setUsers }) => {
   return (
     <>
       {users.length > 0 ? (
-        <div className="container">
-          <div className="table-wrapper">
-            <table className="resizeable-table" ref={tableElement}>
-              <thead>
-                <tr>
+        <div className="table">
+          <div className="table__wrap">
+            <table className="table__resizeable" ref={tableElement}>
+              <thead className="table__head">
+                <tr className="table__row">
                   {columns.map((item, index) => (
-                    <TitleTable
+                    <TableTitle
                       key={index}
                       item={item}
                       users={users}

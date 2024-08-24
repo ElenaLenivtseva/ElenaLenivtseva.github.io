@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Table from "./Experiment/Table";
-import { getAllUsers } from "../api/api";
-import SearchBar from "./common/SearchBar/SearchBar";
-import './HomePage.scss'
+import SearchBar from "../../components/common/SearchBar/SearchBar";
+import Table from "../../components/Table/Table";
+import { getAllUsers } from "../../api/api";
+import "./HomePage.scss";
 
 const tableHeaders = [
   { name: "Name", sortParam: "lastName" },
@@ -12,7 +12,7 @@ const tableHeaders = [
   { name: "Address", sortParam: "address" },
 ];
 
-const HomePage2 = () => {
+const HomePage = () => {
   const [status, setStatus] = useState("loading");
   const [errorText, setErrorText] = useState("");
   const [users, setUsers] = useState([]);
@@ -28,6 +28,13 @@ const HomePage2 = () => {
           setStatus={setStatus}
           setErrorText={setErrorText}
         />
+        <div className="home__rules">
+          <p className='home__ruleText'>
+            Click twice on a user row for open an additional information about
+            the user.
+          </p>
+          <p className='home__ruleText'>Click twice on a header for sort the result.</p>
+        </div>
         <button
           className="button"
           onClick={() => getAllUsers(setErrorText, setStatus, setUsers)}
@@ -46,7 +53,7 @@ const HomePage2 = () => {
         {status === "success" && (
           <Table
             headers={tableHeaders}
-            minCellWidth={120}
+            minCellWidth={50}
             users={users}
             setUsers={setUsers}
           />
@@ -56,4 +63,4 @@ const HomePage2 = () => {
   );
 };
 
-export default HomePage2;
+export default HomePage;
