@@ -1,26 +1,32 @@
 import React from "react";
-// import { useDispatch } from "react-redux";
-// import { openModal } from "../../../features/slices/modalSlice";
 import "./User.scss";
 
 const User = ({ user, setModalIsOpen, setUser }) => {
-  // const dispatch = useDispatch()
-
   return (
     <>
       <tr
         className="table__user"
         key={user.id}
-        onClick={() => {
+        onDoubleClick={() => {
           setModalIsOpen(true);
           setUser(user);
         }}
       >
-        <th className="table__info">{`${user.lastName} ${user.firstName}`}</th>
-        <th className="table__info">{user.age}</th>
-        <th className="table__info">{user.gender}</th>
-        <th className="table__info">{user.phone}</th>
-        <th className="table__info">{`${user.address.city} ${user.address.address}`}</th>
+        <td className="table__info">
+          <span>{`${user.lastName} ${user.firstName}`}</span>
+        </td>
+        <td className="table__info">
+          <span>{user.age}</span>
+        </td>
+        <td className="table__info">
+          <span>{user.gender}</span>
+        </td>
+        <td className="table__info">
+          <span>{user.phone}</span>
+        </td>
+        <td className="table__info">
+            <span>{`${user.address.city} ${user.address.address}`}</span>
+        </td>
       </tr>
     </>
   );

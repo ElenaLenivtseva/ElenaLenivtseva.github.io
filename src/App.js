@@ -1,8 +1,8 @@
 import "./stylesCommon/_common.scss";
-import HomePage from "./components/HomePage";
+import HomePage2 from "./components/HomePage2";
 
 function App() {
-  return <HomePage />;
+  return <HomePage2/>
 }
 
 export default App;

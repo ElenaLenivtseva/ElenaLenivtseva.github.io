@@ -3,7 +3,7 @@ import { getFiltredUsers } from "../../../api/api";
 import "./SearchBar.scss";
 
 
-const SearchBar = ({ setUsers, setStatus, setErrorText }) => {
+const SearchBar = ({ users, setUsers, setStatus, setErrorText }) => {
   const [search, setSearch] = useState("");
 
   function handleSubmit(e) {

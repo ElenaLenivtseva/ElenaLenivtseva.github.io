@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import Table from "./Experiment/Table";
+import { getAllUsers } from "../api/api";
 import SearchBar from "./common/SearchBar/SearchBar";
-import Table from "./common/Table/Table";
-import "./HomePage.scss";
-import {getAllUsers} from '../api/api'
+import './HomePage.scss'
 
+const tableHeaders = [
+  { name: "Name", sortParam: "lastName" },
+  { name: "Age", sortParam: "age" },
+  { name: "Gender", sortParam: "gender" },
+  { name: "Phone", sortParam: "" },
+  { name: "Address", sortParam: "address" },
+];
 
-
-const HomePage = () => {
+const HomePage2 = () => {
   const [status, setStatus] = useState("loading");
   const [errorText, setErrorText] = useState("");
   const [users, setUsers] = useState([]);
   useEffect(() => {
     getAllUsers(setErrorText, setStatus, setUsers);
   }, []);
-  
+
   return (
     <div className="home">
       <div className="home__top">
@@ -28,8 +34,6 @@ const HomePage = () => {
         >
           Get All Users
         </button>
-        
-       
       </div>
       <div className="home__body">
         {status === "loading" && <p>Loading...</p>}
@@ -39,10 +43,17 @@ const HomePage = () => {
             <p>{errorText}</p>
           </div>
         )}
-        {status === "success" && <Table users={users} setUsers={setUsers}/>}
+        {status === "success" && (
+          <Table
+            headers={tableHeaders}
+            minCellWidth={120}
+            users={users}
+            setUsers={setUsers}
+          />
+        )}
       </div>
     </div>
   );
 };
 
-export default HomePage;
+export default HomePage2;

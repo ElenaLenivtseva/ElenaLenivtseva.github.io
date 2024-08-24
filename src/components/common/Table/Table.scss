@@ -31,12 +31,15 @@
     &__title {
         font-size: 1.5rem;
         padding: 1rem 0.7rem;
+        transition: 0.2s ease-in-out;
         &:hover {
             cursor: pointer;
+            // background: #cdec85;
         }
         &WithoutHover {
             &:hover {
                 cursor: default;
+                background: none;
             }
         }
     }
@@ -59,4 +62,20 @@
         font-size: 1.5rem;
         padding: 0.7rem;
     }
+}
+.resize {
+    resize: horizontal;
+    overflow: auto;
+    min-width: 50px;
+    margin: 0;
+    padding: 0.3rem;
+    display: block;
+    border-right: 1px solid black;
+}
+th .resize {
+    bottom: 0;
+    width: auto;
+    height: auto;
+    min-height: 20px;
+    min-width: 20px;
 }

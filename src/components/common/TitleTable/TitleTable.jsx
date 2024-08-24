@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TitleTable = ({ item, users, setUsers }) => {
+const TitleTable = ({ item, users, setUsers, index, tableHeight, mouseDown, activeIndex }) => {
   const [order, setOrder] = useState("asc");
   const sorting = (param) => {
     if (param === "address") {
@@ -35,17 +35,33 @@ const TitleTable = ({ item, users, setUsers }) => {
   };
   return (
     <th
+      ref={item.ref}
       className={`table__title ${
         item.name === "Phone" ? "table__titleWithoutHover" : ""
       }`}
-      onClick={() => {
+      onDoubleClick={() => {
         if (item.name !== "Phone") {
           sorting(item.sortParam);
         }
       }}
     >
-      {item.name}
+      <span> {item.name}</span>
+      <div
+        style={{ height: tableHeight }}
+        onMouseDown={() => mouseDown(index)}
+        className={`resize-handle ${activeIndex === index ? "active" : "idle"}`}
+      />
     </th>
+    // <th ref={ref} key={text}>
+    //   <span>{text}</span>
+    //   <div
+    //     style={{ height: tableHeight }}
+    //     onMouseDown={() => mouseDown(i)}
+    //     className={`resize-handle ${
+    //       activeIndex === i ? "active" : "idle"
+    //     }`}
+    //   />
+    // </th>
   );
 };
 
