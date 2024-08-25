@@ -1,6 +1,7 @@
 import React from "react";
 import "./Modal.scss";
 
+
 const Modal = ({ modalIsOpen, user, closeModal }) => {
   let info = [
     {

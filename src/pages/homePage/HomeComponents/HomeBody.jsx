@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Table from '../../../widgets/users/UI/components/Table/Table'
+import { Context } from '../HomePage'
 
-const HomeBody = ({status, errorText, tableHeaders, users, setUsers}) => {
+const HomeBody = () => {
+  // {status, errorText, tableHeaders, users, setUsers}
+  const context = useContext(Context)
   return (
     <div className="home__body">
-        {status === "loading" && <p>Loading...</p>}
-        {status === "error" && (
+        {context.status === "loading" && <p>Loading...</p>}
+        {context.status === "error" && (
           <div>
             <p>Sorry, there is a error.</p>
-            <p>{errorText}</p>
+            <p>{context.errorText}</p>
           </div>
         )}
-        {status === "success" && (
+        {context.status === "success" && (
           <Table
-            headers={tableHeaders}
+            // headers={tableHeaders}
             minCellWidth={50}
-            users={users}
-            setUsers={setUsers}
+            // users={users}
+            // setUsers={setUsers}
           />
         )}
       </div>

@@ -1,14 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import SearchBar from '../../../widgets/users/UI/components/common/SearchBar/SearchBar'
 import { getAllUsers } from '../../../widgets/users/api/api'
-
-const HomeTop = ({setUsers, setStatus, setErrorText}) => {
+import {Context} from '../HomePage'
+const HomeTop = () => {
+  // {setUsers, setStatus, setErrorText}
+  const context = useContext(Context)
   return (
     <div className="home__top">
         <SearchBar
-          setUsers={setUsers}
-          setStatus={setStatus}
-          setErrorText={setErrorText}
+          // setUsers={setUsers}
+          // setStatus={setStatus}
+          // setErrorText={setErrorText}
         />
         <div className="home__rules">
           <p className='home__ruleText'>
@@ -19,7 +21,7 @@ const HomeTop = ({setUsers, setStatus, setErrorText}) => {
         </div>
         <button
           className="button"
-          onClick={() => getAllUsers(setErrorText, setStatus, setUsers)}
+          onClick={() => getAllUsers(context.setErrorText, context.setStatus, context.setUsers)}
         >
           Get All Users
         </button>

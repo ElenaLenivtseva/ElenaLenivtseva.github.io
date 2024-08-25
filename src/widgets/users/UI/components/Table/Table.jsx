@@ -1,8 +1,9 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useContext } from "react";
 import TableContent from "./Table__Content";
 import Modal from "../common/Modal/Modal";
 import TableTitle from "./Table__Title";
 import "./Table.scss";
+import { Context } from "../../../../../pages/homePage/HomePage";
 
 const createHeaders = (headers) => {
   return headers.map((item) => ({
@@ -11,11 +12,20 @@ const createHeaders = (headers) => {
     ref: useRef(),
   }));
 };
+const headers = [
+  { name: "Name", sortParam: "lastName" },
+  { name: "Age", sortParam: "age" },
+  { name: "Gender", sortParam: "gender" },
+  { name: "Phone", sortParam: "" },
+  { name: "Address", sortParam: "address" },
+];
 
-const Table = ({ headers, minCellWidth, users, setUsers }) => {
+const Table = ({ minCellWidth}) => {
+  // users, setUsers 
   // для модального окна
   const [user, setUser] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const context = useContext(Context)
 
   function closeModal() {
     setUser({});
@@ -27,6 +37,7 @@ const Table = ({ headers, minCellWidth, users, setUsers }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const tableElement = useRef(null);
   const columns = createHeaders(headers);
+  
 
   useEffect(() => {
     setTableHeight(tableElement.current.offsetHeight);
@@ -83,7 +94,7 @@ const Table = ({ headers, minCellWidth, users, setUsers }) => {
 
   return (
     <>
-      {users.length > 0 ? (
+      {context.users.length > 0 ? (
         <div className="table">
           <div className="table__wrap">
             <table className="table__resizeable" ref={tableElement}>
@@ -93,8 +104,8 @@ const Table = ({ headers, minCellWidth, users, setUsers }) => {
                     <TableTitle
                       key={index}
                       item={item}
-                      users={users}
-                      setUsers={setUsers}
+                      // users={context.users}
+                      // setUsers={context.setUsers}
                       index={index}
                       tableHeight={tableHeight}
                       mouseDown={mouseDown}
@@ -104,7 +115,7 @@ const Table = ({ headers, minCellWidth, users, setUsers }) => {
                 </tr>
               </thead>
               <TableContent
-                users={users}
+                // users={users}
                 setUser={setUser}
                 setModalIsOpen={setModalIsOpen}
               />
