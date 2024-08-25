@@ -10,7 +10,7 @@ const keys = [
   "address.address",
 ];
 
-
+// Это нехорошо, что функции для взаимодействия с "внешним миром" что-то знают про представление, но разделить у меня никак не получается( 
 export async function getAllUsers(setErrorText, setStatus, setUsers) {
   fetch(URL)
     .then((response) => response.json())

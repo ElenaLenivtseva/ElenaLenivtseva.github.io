@@ -7,7 +7,7 @@ import "./Table.scss";
 const createHeaders = (headers) => {
   return headers.map((item) => ({
     name: item.name,
-    sortParam: item.param,
+    sortParam: item.sortParam,
     ref: useRef(),
   }));
 };
@@ -111,7 +111,7 @@ const Table = ({ headers, minCellWidth, users, setUsers }) => {
             </table>
           </div>
           <button className="button" onClick={resetTableCells}>
-            Reset
+            Reset changes of columns' width
           </button>
           <Modal
             modalIsOpen={modalIsOpen}
