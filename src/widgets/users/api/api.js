@@ -10,7 +10,7 @@ const keys = [
   "address.address",
 ];
 
-
+// ЗДЕСТЬ КЛЮЧЕВАЯ ОШИБКА В ТОМ, ЧТО МОЙ УРОВЕНЬ API, ПО СУТИ ВНЕШНИЙ, ЗНАЕТ ОБ УРОВНЕ ПРЕДСТАВЛЕНИЯ
 export async function getAllUsers(setErrorText, setStatus, setUsers) {
   fetch(URL)
     .then((response) => response.json())
