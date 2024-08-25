@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { sortAsc, sortDesc } from "../../utils/sortFunctions";
 
 // этот компонент не только отрисовывает название колонки. По двойному клику на название колонки происходит сортировка users. Также именно с ним связано изменение ширины колонки
 
@@ -11,45 +12,18 @@ const TableTitle = ({
   mouseDown,
   activeIndex,
 }) => {
-  // item,
-  // users,
-  // setUsers,
-  // index,
-  // tableHeight,
-  // mouseDown,
-  // activeIndex,
-  const [order, setOrder] = useState("asc");
+  const [orderAsc, setOrderAsc] = useState(true);
   const sorting = (param) => {
-    if (param === "address") {
-      if (order === "asc") {
-        const sorted = [...users].sort((a, b) =>
-          a[param].city > b[param].city ? 1 : -1
-        );
-        setUsers(sorted);
-        setOrder("desc");
-      } else if (order === "desc") {
-        const sorted = [...users].sort((a, b) =>
-          a[param].city < b[param].city ? 1 : -1
-        );
-        setUsers(sorted);
-        setOrder("asc");
-      }
+    let sorted = [];
+    if (orderAsc) {
+      sorted = sortAsc(users, param);
     } else {
-      if (order === "asc") {
-        const sorted = [...users].sort((a, b) =>
-          a[param] > b[param] ? 1 : -1
-        );
-        setUsers(sorted);
-        setOrder("desc");
-      } else if (order === "desc") {
-        const sorted = [...users].sort((a, b) =>
-          a[param] < b[param] ? 1 : -1
-        );
-        setUsers(sorted);
-        setOrder("asc");
-      }
+      sorted = sortDesc(users, param);
     }
+    setUsers(sorted);
+    setOrderAsc(!orderAsc);
   };
+
   return (
     <th
       ref={item.ref}

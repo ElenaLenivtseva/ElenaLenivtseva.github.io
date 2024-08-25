@@ -10,7 +10,7 @@ const keys = [
   "address.address",
 ];
 
-// ЗДЕСТЬ КЛЮЧЕВАЯ ОШИБКА В ТОМ, ЧТО МОЙ УРОВЕНЬ API, ПО СУТИ ВНЕШНИЙ, ЗНАЕТ ОБ УРОВНЕ ПРЕДСТАВЛЕНИЯ
+// Это нехорошо, что функции для взаимодействия с "внешним миром" что-то знают про представление, но разделить у меня никак не получается( 
 export async function getAllUsers(setErrorText, setStatus, setUsers) {
   fetch(URL)
     .then((response) => response.json())
