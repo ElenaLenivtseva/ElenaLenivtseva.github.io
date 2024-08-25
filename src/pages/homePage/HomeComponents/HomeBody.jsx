@@ -1,7 +1,15 @@
 import React from 'react'
-import Table from '../../../widgets/users/UI/components/Table/Table'
+import Table from '../../../components/Table/Table'
 
-const HomeBody = ({status, errorText, tableHeaders, users, setUsers}) => {
+const tableHeaders = [
+  { name: "Name", sortParam: "lastName" },
+  { name: "Age", sortParam: "age" },
+  { name: "Gender", sortParam: "gender" },
+  { name: "Phone", sortParam: "" },
+  { name: "Address", sortParam: "address" },
+];
+
+const HomeBody = ({status, errorText, users, setUsers}) => {
   return (
     <div className="home__body">
         {status === "loading" && <p>Loading...</p>}

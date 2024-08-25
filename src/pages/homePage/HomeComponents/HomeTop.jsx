@@ -1,6 +1,6 @@
 import React from 'react'
-import SearchBar from '../../../widgets/users/UI/components/common/SearchBar/SearchBar'
-import { getAllUsers } from '../../../widgets/users/api/api'
+import SearchBar from '../../../components/common/SearchBar/SearchBar'
+import { getAllUsers } from '../../../api/api'
 
 const HomeTop = ({setUsers, setStatus, setErrorText}) => {
   return (

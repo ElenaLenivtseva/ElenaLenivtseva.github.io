@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getFiltredUsers } from "../../../../api/api";
+import { getFiltredUsers } from "../../../api/api";
 import "./SearchBar.scss";
 
 

@@ -1,4 +1,3 @@
-// import "./stylesCommon/_common.scss";
 import HomePage from "./pages/homePage/HomePage";
 
 function App() {

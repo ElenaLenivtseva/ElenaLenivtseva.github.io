@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsers } from "../../widgets/users/api/api";
+import { getAllUsers } from "../../api/api";
 import "./HomePage.scss";
 import HomeTop from "./HomeComponents/HomeTop";
 import HomeBody from "./HomeComponents/HomeBody";
@@ -12,6 +12,7 @@ const tableHeaders = [
   { name: "Address", sortParam: "address" },
 ];
 
+
 const HomePage = () => {
   const [status, setStatus] = useState("loading");
   const [errorText, setErrorText] = useState("");
@@ -20,6 +21,7 @@ const HomePage = () => {
     getAllUsers(setErrorText, setStatus, setUsers);
   }, []);
 
+  
   return (
     <div className="home">
       <HomeTop
