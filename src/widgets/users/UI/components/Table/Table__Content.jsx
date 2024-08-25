@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import TableUser from "./Table__User";
-import { Context } from "../../../../../pages/homePage/HomePage";
 
-const TableContent = ({ setModalIsOpen, setUser}) => {
-  // users, setModalIsOpen, setUser 
-  const context = useContext(Context)
+const TableContent = ({ users, setModalIsOpen, setUser }) => {
   return (
     <tbody className="table__body">
-      {context.users.map((user) => {
+      {users.map((user) => {
         return (
           <TableUser
             user={user}

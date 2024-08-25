@@ -1,17 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { getFiltredUsers } from "../../../../api/api";
 import "./SearchBar.scss";
-import { Context } from "../../../../../../pages/homePage/HomePage";
 
 
-const SearchBar = () => {
-  // { setUsers, setStatus, setErrorText }
+const SearchBar = ({ users, setUsers, setStatus, setErrorText }) => {
   const [search, setSearch] = useState("");
-  const context = useContext(Context)
 
   function handleSubmit(e) {
     e.preventDefault();
-    getFiltredUsers(search, context.setStatus, context.setUsers, context.setErrorText);
+    getFiltredUsers(search, setStatus, setUsers, setErrorText);
     setSearch("");
   }
 

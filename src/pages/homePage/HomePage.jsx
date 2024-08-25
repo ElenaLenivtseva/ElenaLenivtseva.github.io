@@ -1,9 +1,17 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import { getAllUsers } from "../../widgets/users/api/api";
 import "./HomePage.scss";
 import HomeTop from "./HomeComponents/HomeTop";
 import HomeBody from "./HomeComponents/HomeBody";
-export const Context = createContext();
+
+const tableHeaders = [
+  { name: "Name", sortParam: "lastName" },
+  { name: "Age", sortParam: "age" },
+  { name: "Gender", sortParam: "gender" },
+  { name: "Phone", sortParam: "" },
+  { name: "Address", sortParam: "address" },
+];
+
 
 const HomePage = () => {
   const [status, setStatus] = useState("loading");
@@ -12,32 +20,23 @@ const HomePage = () => {
   useEffect(() => {
     getAllUsers(setErrorText, setStatus, setUsers);
   }, []);
+
   
-  const value = {
-    status,
-    setStatus,
-    errorText,
-    setErrorText,
-    users,
-    setUsers,
-  };
   return (
-    <Context.Provider value={value}>
-      <div className="home">
-        <HomeTop
-          // setUsers={setUsers}
-          // setStatus={setStatus}
-          // setErrorText={setErrorText}
-        />
-        <HomeBody
-          // status={status}
-          // errorText={errorText}
-          // tableHeaders={tableHeaders}
-          // users={users}
-          // setUsers={setUsers}
-        />
-      </div>
-    </Context.Provider>
+    <div className="home">
+      <HomeTop
+        setUsers={setUsers}
+        setStatus={setStatus}
+        setErrorText={setErrorText}
+      />
+      <HomeBody
+        status={status}
+        errorText={errorText}
+        tableHeaders={tableHeaders}
+        users={users}
+        setUsers={setUsers}
+      />
+    </div>
   );
 };
 

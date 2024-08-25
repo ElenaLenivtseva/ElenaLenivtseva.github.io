@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../../../../../pages/homePage/HomePage";
+import React, { useState } from "react";
 
 // этот компонент не только отрисовывает название колонки. По двойному клику на название колонки происходит сортировка users. Также именно с ним связано изменение ширины колонки
 
 const TableTitle = ({
   item,
+  users,
+  setUsers,
   index,
   tableHeight,
   mouseDown,
@@ -17,35 +18,34 @@ const TableTitle = ({
   // tableHeight,
   // mouseDown,
   // activeIndex,
-  const context = useContext(Context)
   const [order, setOrder] = useState("asc");
   const sorting = (param) => {
     if (param === "address") {
       if (order === "asc") {
-        const sorted = [...context.users].sort((a, b) =>
+        const sorted = [...users].sort((a, b) =>
           a[param].city > b[param].city ? 1 : -1
         );
-        context.setUsers(sorted);
+        setUsers(sorted);
         setOrder("desc");
       } else if (order === "desc") {
-        const sorted = [...context.users].sort((a, b) =>
+        const sorted = [...users].sort((a, b) =>
           a[param].city < b[param].city ? 1 : -1
         );
-        context.setUsers(sorted);
+        setUsers(sorted);
         setOrder("asc");
       }
     } else {
       if (order === "asc") {
-        const sorted = [...context.users].sort((a, b) =>
+        const sorted = [...users].sort((a, b) =>
           a[param] > b[param] ? 1 : -1
         );
-        context.setUsers(sorted);
+        setUsers(sorted);
         setOrder("desc");
       } else if (order === "desc") {
-        const sorted = [...context.users].sort((a, b) =>
+        const sorted = [...users].sort((a, b) =>
           a[param] < b[param] ? 1 : -1
         );
-        context.setUsers(sorted);
+        setUsers(sorted);
         setOrder("asc");
       }
     }
